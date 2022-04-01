@@ -523,29 +523,29 @@ lab03/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/build
 .PHONY : lab03/fast
 
-lab03_task01.o: lab03_task01.cpp.o
-.PHONY : lab03_task01.o
+lab03_task05.o: lab03_task05.cpp.o
+.PHONY : lab03_task05.o
 
 # target to build an object file
-lab03_task01.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/lab03_task01.cpp.o
-.PHONY : lab03_task01.cpp.o
+lab03_task05.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/lab03_task05.cpp.o
+.PHONY : lab03_task05.cpp.o
 
-lab03_task01.i: lab03_task01.cpp.i
-.PHONY : lab03_task01.i
+lab03_task05.i: lab03_task05.cpp.i
+.PHONY : lab03_task05.i
 
 # target to preprocess a source file
-lab03_task01.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/lab03_task01.cpp.i
-.PHONY : lab03_task01.cpp.i
+lab03_task05.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/lab03_task05.cpp.i
+.PHONY : lab03_task05.cpp.i
 
-lab03_task01.s: lab03_task01.cpp.s
-.PHONY : lab03_task01.s
+lab03_task05.s: lab03_task05.cpp.s
+.PHONY : lab03_task05.s
 
 # target to generate assembly for a file
-lab03_task01.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/lab03_task01.cpp.s
-.PHONY : lab03_task01.cpp.s
+lab03_task05.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab03.dir/build.make CMakeFiles/lab03.dir/lab03_task05.cpp.s
+.PHONY : lab03_task05.cpp.s
 
 # Help Target
 help:
@@ -587,9 +587,9 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... lab03"
-	@echo "... lab03_task01.o"
-	@echo "... lab03_task01.i"
-	@echo "... lab03_task01.s"
+	@echo "... lab03_task05.o"
+	@echo "... lab03_task05.i"
+	@echo "... lab03_task05.s"
 .PHONY : help
 
 

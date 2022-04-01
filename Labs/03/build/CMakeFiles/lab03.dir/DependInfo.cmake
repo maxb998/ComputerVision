@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task01.cpp" "CMakeFiles/lab03.dir/lab03_task01.cpp.o" "gcc" "CMakeFiles/lab03.dir/lab03_task01.cpp.o.d"
+  "/home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task05.cpp" "CMakeFiles/lab03.dir/lab03_task05.cpp.o" "gcc" "CMakeFiles/lab03.dir/lab03_task05.cpp.o.d"
   )
 
 # Targets to which this target links.

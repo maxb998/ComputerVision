@@ -69,28 +69,28 @@ include CMakeFiles/lab03.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lab03.dir/flags.make
 
-CMakeFiles/lab03.dir/lab03_task01.cpp.o: CMakeFiles/lab03.dir/flags.make
-CMakeFiles/lab03.dir/lab03_task01.cpp.o: ../lab03_task01.cpp
-CMakeFiles/lab03.dir/lab03_task01.cpp.o: CMakeFiles/lab03.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/03/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab03.dir/lab03_task01.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab03.dir/lab03_task01.cpp.o -MF CMakeFiles/lab03.dir/lab03_task01.cpp.o.d -o CMakeFiles/lab03.dir/lab03_task01.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task01.cpp
+CMakeFiles/lab03.dir/lab03_task05.cpp.o: CMakeFiles/lab03.dir/flags.make
+CMakeFiles/lab03.dir/lab03_task05.cpp.o: ../lab03_task05.cpp
+CMakeFiles/lab03.dir/lab03_task05.cpp.o: CMakeFiles/lab03.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/03/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab03.dir/lab03_task05.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab03.dir/lab03_task05.cpp.o -MF CMakeFiles/lab03.dir/lab03_task05.cpp.o.d -o CMakeFiles/lab03.dir/lab03_task05.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task05.cpp
 
-CMakeFiles/lab03.dir/lab03_task01.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab03.dir/lab03_task01.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task01.cpp > CMakeFiles/lab03.dir/lab03_task01.cpp.i
+CMakeFiles/lab03.dir/lab03_task05.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab03.dir/lab03_task05.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task05.cpp > CMakeFiles/lab03.dir/lab03_task05.cpp.i
 
-CMakeFiles/lab03.dir/lab03_task01.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab03.dir/lab03_task01.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task01.cpp -o CMakeFiles/lab03.dir/lab03_task01.cpp.s
+CMakeFiles/lab03.dir/lab03_task05.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab03.dir/lab03_task05.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task05.cpp -o CMakeFiles/lab03.dir/lab03_task05.cpp.s
 
 # Object files for target lab03
 lab03_OBJECTS = \
-"CMakeFiles/lab03.dir/lab03_task01.cpp.o"
+"CMakeFiles/lab03.dir/lab03_task05.cpp.o"
 
 # External object files for target lab03
 lab03_EXTERNAL_OBJECTS =
 
-lab03: CMakeFiles/lab03.dir/lab03_task01.cpp.o
+lab03: CMakeFiles/lab03.dir/lab03_task05.cpp.o
 lab03: CMakeFiles/lab03.dir/build.make
 lab03: /usr/local/lib64/libopencv_gapi.so.4.5.2
 lab03: /usr/local/lib64/libopencv_stitching.so.4.5.2
