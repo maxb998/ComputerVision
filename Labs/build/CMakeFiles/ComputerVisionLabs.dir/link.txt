@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/ComputerVisionLabs.dir/03/lab03_task01.cpp.o -o ComputerVisionLabs 
