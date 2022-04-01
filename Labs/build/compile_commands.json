@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/massimo/Documents/GitHub/ComputerVision/Labs/build",
+  "command": "/usr/bin/g++  -isystem /usr/local/include/opencv4 -g -o CMakeFiles/ComputerVisionLab.dir/03/lab03_task01.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task01.cpp",
+  "file": "/home/massimo/Documents/GitHub/ComputerVision/Labs/03/lab03_task01.cpp"
+}
+]
