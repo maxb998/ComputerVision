@@ -1,7 +1,12 @@
 [
 {
   "directory": "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build",
-  "command": "/usr/bin/g++  -isystem /usr/local/include/opencv4 -g -o CMakeFiles/lab04.dir/lab04_task01.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/04/lab04_task01.cpp",
-  "file": "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/lab04_task01.cpp"
+  "command": "/usr/bin/g++  -I/usr/local/include/opencv4 -g -o CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task01.cpp",
+  "file": "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task01.cpp"
+},
+{
+  "directory": "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build",
+  "command": "/usr/bin/g++  -isystem /usr/local/include/opencv4 -g -o CMakeFiles/lab04.dir/src/lab04_main.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_main.cpp",
+  "file": "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_main.cpp"
 }
 ]

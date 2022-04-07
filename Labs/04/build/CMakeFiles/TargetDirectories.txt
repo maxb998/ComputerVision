@@ -26,6 +26,7 @@
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/ContinuousCoverage.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/ContinuousMemCheck.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/ContinuousSubmit.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/tasksLibrary.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/lab04.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/package.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/package_source.dir

@@ -8,12 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_main.cpp" "CMakeFiles/lab04.dir/src/lab04_main.cpp.o" "gcc" "CMakeFiles/lab04.dir/src/lab04_main.cpp.o.d"
+  "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task01.cpp" "CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o" "gcc" "CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/tasksLibrary.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

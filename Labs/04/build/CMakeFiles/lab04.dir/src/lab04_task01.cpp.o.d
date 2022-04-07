@@ -1,6 +1,7 @@
-CMakeFiles/lab04.dir/lab04_task01.cpp.o: \
- /home/massimo/Documents/GitHub/ComputerVision/Labs/04/lab04_task01.cpp \
+CMakeFiles/lab04.dir/src/lab04_task01.cpp.o: \
+ /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task01.cpp \
  /usr/include/stdc-predef.h \
+ /home/massimo/Documents/GitHub/ComputerVision/Labs/04/headers/lab04_tasks.hpp \
  /usr/local/include/opencv4/opencv2/highgui.hpp \
  /usr/local/include/opencv4/opencv2/core.hpp \
  /usr/local/include/opencv4/opencv2/core/cvdef.h \

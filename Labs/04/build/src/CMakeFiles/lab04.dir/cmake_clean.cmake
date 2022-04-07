@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lab04.dir/src/lab04_main.cpp.o"
-  "CMakeFiles/lab04.dir/src/lab04_main.cpp.o.d"
+  "CMakeFiles/lab04.dir/lab04_main.cpp.o"
+  "CMakeFiles/lab04.dir/lab04_main.cpp.o.d"
   "lab04"
   "lab04.pdb"
 )

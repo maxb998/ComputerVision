@@ -7,9 +7,15 @@ enable_testing()
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(lab04 lab04_task01.cpp)
+add_library(
+    tasksLibrary
+    headers/lab04_tasks.hpp
+    src/lab04_task01.cpp
+)
 
-target_link_libraries(lab04 ${OpenCV_LIBS})
+add_executable(lab04 src/lab04_main.cpp)
+
+target_link_libraries(lab04 ${OpenCV_LIBS} tasksLibrary)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

@@ -43,7 +43,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -86,7 +87,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -291,8 +293,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "lab04::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-lab04-Debug-e5c261d8972ab53aa0ef.json",
+					"jsonFile" : "target-lab04-Debug-3c3ea1dfc42f6804f22a.json",
 					"name" : "lab04",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tasksLibrary::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tasksLibrary-Debug-0a8905ac5b70fe6bfd2b.json",
+					"name" : "tasksLibrary",
 					"projectIndex" : 0
 				}
 			]

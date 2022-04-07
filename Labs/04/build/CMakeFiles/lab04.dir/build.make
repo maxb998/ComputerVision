@@ -69,28 +69,28 @@ include CMakeFiles/lab04.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lab04.dir/flags.make
 
-CMakeFiles/lab04.dir/lab04_task01.cpp.o: CMakeFiles/lab04.dir/flags.make
-CMakeFiles/lab04.dir/lab04_task01.cpp.o: ../lab04_task01.cpp
-CMakeFiles/lab04.dir/lab04_task01.cpp.o: CMakeFiles/lab04.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab04.dir/lab04_task01.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab04.dir/lab04_task01.cpp.o -MF CMakeFiles/lab04.dir/lab04_task01.cpp.o.d -o CMakeFiles/lab04.dir/lab04_task01.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/04/lab04_task01.cpp
+CMakeFiles/lab04.dir/src/lab04_main.cpp.o: CMakeFiles/lab04.dir/flags.make
+CMakeFiles/lab04.dir/src/lab04_main.cpp.o: ../src/lab04_main.cpp
+CMakeFiles/lab04.dir/src/lab04_main.cpp.o: CMakeFiles/lab04.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab04.dir/src/lab04_main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab04.dir/src/lab04_main.cpp.o -MF CMakeFiles/lab04.dir/src/lab04_main.cpp.o.d -o CMakeFiles/lab04.dir/src/lab04_main.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_main.cpp
 
-CMakeFiles/lab04.dir/lab04_task01.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab04.dir/lab04_task01.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/massimo/Documents/GitHub/ComputerVision/Labs/04/lab04_task01.cpp > CMakeFiles/lab04.dir/lab04_task01.cpp.i
+CMakeFiles/lab04.dir/src/lab04_main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab04.dir/src/lab04_main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_main.cpp > CMakeFiles/lab04.dir/src/lab04_main.cpp.i
 
-CMakeFiles/lab04.dir/lab04_task01.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab04.dir/lab04_task01.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/massimo/Documents/GitHub/ComputerVision/Labs/04/lab04_task01.cpp -o CMakeFiles/lab04.dir/lab04_task01.cpp.s
+CMakeFiles/lab04.dir/src/lab04_main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab04.dir/src/lab04_main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_main.cpp -o CMakeFiles/lab04.dir/src/lab04_main.cpp.s
 
 # Object files for target lab04
 lab04_OBJECTS = \
-"CMakeFiles/lab04.dir/lab04_task01.cpp.o"
+"CMakeFiles/lab04.dir/src/lab04_main.cpp.o"
 
 # External object files for target lab04
 lab04_EXTERNAL_OBJECTS =
 
-lab04: CMakeFiles/lab04.dir/lab04_task01.cpp.o
+lab04: CMakeFiles/lab04.dir/src/lab04_main.cpp.o
 lab04: CMakeFiles/lab04.dir/build.make
 lab04: /usr/local/lib64/libopencv_gapi.so.4.5.2
 lab04: /usr/local/lib64/libopencv_stitching.so.4.5.2
@@ -124,6 +124,7 @@ lab04: /usr/local/lib64/libopencv_wechat_qrcode.so.4.5.2
 lab04: /usr/local/lib64/libopencv_xfeatures2d.so.4.5.2
 lab04: /usr/local/lib64/libopencv_xobjdetect.so.4.5.2
 lab04: /usr/local/lib64/libopencv_xphoto.so.4.5.2
+lab04: libtasksLibrary.a
 lab04: /usr/local/lib64/libopencv_shape.so.4.5.2
 lab04: /usr/local/lib64/libopencv_highgui.so.4.5.2
 lab04: /usr/local/lib64/libopencv_datasets.so.4.5.2

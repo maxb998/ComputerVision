@@ -26,13 +26,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 12,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
@@ -65,6 +65,13 @@
 			[
 				0
 			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "tasksLibrary::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "lab04::@6890427a1f51a3e7e1df",
@@ -246,6 +253,11 @@
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "libtasksLibrary.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib64/libopencv_shape.so.4.5.2",
 				"role" : "libraries"
 			},
@@ -369,7 +381,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "lab04_task01.cpp",
+			"path" : "src/lab04_main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
