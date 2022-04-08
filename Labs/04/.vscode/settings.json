@@ -1,11 +1,11 @@
 {
     "cmake.debugConfig": {
         "args": [
-            "1",
-            "/home/massimo/Documents/GitHub/ComputerVision/Labs/04/docs/street_scene.png"
+            "1"
         ]
     },
     "files.associations": {
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "iostream": "cpp"
     }
 }
