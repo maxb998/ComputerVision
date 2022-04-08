@@ -533,32 +533,8 @@ lab04: cmake_check_build_system
 
 # fast build rule for target.
 lab04/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab04.dir/build.make CMakeFiles/lab04.dir/build
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/lab04.dir/build.make src/CMakeFiles/lab04.dir/build
 .PHONY : lab04/fast
-
-src/lab04_main.o: src/lab04_main.cpp.o
-.PHONY : src/lab04_main.o
-
-# target to build an object file
-src/lab04_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab04.dir/build.make CMakeFiles/lab04.dir/src/lab04_main.cpp.o
-.PHONY : src/lab04_main.cpp.o
-
-src/lab04_main.i: src/lab04_main.cpp.i
-.PHONY : src/lab04_main.i
-
-# target to preprocess a source file
-src/lab04_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab04.dir/build.make CMakeFiles/lab04.dir/src/lab04_main.cpp.i
-.PHONY : src/lab04_main.cpp.i
-
-src/lab04_main.s: src/lab04_main.cpp.s
-.PHONY : src/lab04_main.s
-
-# target to generate assembly for a file
-src/lab04_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab04.dir/build.make CMakeFiles/lab04.dir/src/lab04_main.cpp.s
-.PHONY : src/lab04_main.cpp.s
 
 src/lab04_task01.o: src/lab04_task01.cpp.o
 .PHONY : src/lab04_task01.o
@@ -583,6 +559,30 @@ src/lab04_task01.s: src/lab04_task01.cpp.s
 src/lab04_task01.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tasksLibrary.dir/build.make CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.s
 .PHONY : src/lab04_task01.cpp.s
+
+src/lab04_task02.o: src/lab04_task02.cpp.o
+.PHONY : src/lab04_task02.o
+
+# target to build an object file
+src/lab04_task02.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tasksLibrary.dir/build.make CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o
+.PHONY : src/lab04_task02.cpp.o
+
+src/lab04_task02.i: src/lab04_task02.cpp.i
+.PHONY : src/lab04_task02.i
+
+# target to preprocess a source file
+src/lab04_task02.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tasksLibrary.dir/build.make CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.i
+.PHONY : src/lab04_task02.cpp.i
+
+src/lab04_task02.s: src/lab04_task02.cpp.s
+.PHONY : src/lab04_task02.s
+
+# target to generate assembly for a file
+src/lab04_task02.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tasksLibrary.dir/build.make CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.s
+.PHONY : src/lab04_task02.cpp.s
 
 # Help Target
 help:
@@ -625,12 +625,12 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... lab04"
 	@echo "... tasksLibrary"
-	@echo "... src/lab04_main.o"
-	@echo "... src/lab04_main.i"
-	@echo "... src/lab04_main.s"
 	@echo "... src/lab04_task01.o"
 	@echo "... src/lab04_task01.i"
 	@echo "... src/lab04_task01.s"
+	@echo "... src/lab04_task02.o"
+	@echo "... src/lab04_task02.i"
+	@echo "... src/lab04_task02.s"
 .PHONY : help
 
 

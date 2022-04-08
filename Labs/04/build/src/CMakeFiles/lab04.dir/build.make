@@ -124,6 +124,7 @@ src/lab04: /usr/local/lib64/libopencv_wechat_qrcode.so.4.5.2
 src/lab04: /usr/local/lib64/libopencv_xfeatures2d.so.4.5.2
 src/lab04: /usr/local/lib64/libopencv_xobjdetect.so.4.5.2
 src/lab04: /usr/local/lib64/libopencv_xphoto.so.4.5.2
+src/lab04: libtasksLibrary.a
 src/lab04: /usr/local/lib64/libopencv_shape.so.4.5.2
 src/lab04: /usr/local/lib64/libopencv_highgui.so.4.5.2
 src/lab04: /usr/local/lib64/libopencv_datasets.so.4.5.2

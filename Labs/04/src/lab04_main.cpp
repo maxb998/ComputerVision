@@ -12,15 +12,15 @@ int main(int argc, char** argv)
 
     // Check whether the file in argv[1] actually exists
     FILE *file;
-    string filename(argv[1]);
-    if (!(file = fopen(argv[1], "r")))
-        throw invalid_argument(filename + " not found");
+    string filename(argv[2]);
+    if (!(file = fopen(argv[2], "r")))
+        throw invalid_argument(filename + " not found"); 
     fclose(file);
 
     // Check whether the task n° is an integer, if it isn't than exception is thrown within the switch-case below
     int task = 0;
-    if (isdigit(*argv[2]))
-        task = stoi(argv[2]);
+    if (isdigit(*argv[1]))
+        task = stoi(argv[1]);
     
     switch (task)
     {
@@ -29,6 +29,7 @@ int main(int argc, char** argv)
         break;
 
     case 2:
+        task02(filename);
         break;
 
     case 3:

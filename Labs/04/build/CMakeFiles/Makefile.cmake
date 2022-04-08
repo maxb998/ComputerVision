@@ -11,6 +11,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.2/CMakeSystem.cmake"
+  "../src/CMakeLists.txt"
   "/usr/local/lib64/cmake/opencv4/OpenCVConfig-version.cmake"
   "/usr/local/lib64/cmake/opencv4/OpenCVConfig.cmake"
   "/usr/local/lib64/cmake/opencv4/OpenCVModules-release.cmake"
@@ -55,6 +56,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CPackConfig.cmake"
   "CPackSourceConfig.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -88,5 +90,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ContinuousMemCheck.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake"
   "CMakeFiles/tasksLibrary.dir/DependInfo.cmake"
-  "CMakeFiles/lab04.dir/DependInfo.cmake"
+  "src/CMakeFiles/lab04.dir/DependInfo.cmake"
   )

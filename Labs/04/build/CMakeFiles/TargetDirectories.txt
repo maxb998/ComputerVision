@@ -27,9 +27,14 @@
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/ContinuousMemCheck.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/ContinuousSubmit.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/tasksLibrary.dir
-/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/lab04.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/package.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/package_source.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/test.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/edit_cache.dir
 /home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles/rebuild_cache.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/src/CMakeFiles/lab04.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/src/CMakeFiles/package.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/src/CMakeFiles/package_source.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/src/CMakeFiles/test.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/src/CMakeFiles/edit_cache.dir
+/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/src/CMakeFiles/rebuild_cache.dir

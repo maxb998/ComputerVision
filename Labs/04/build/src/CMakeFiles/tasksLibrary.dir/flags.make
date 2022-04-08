@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include/opencv4 -I/home/massimo/Documents/GitHub/ComputerVision/Labs/04/headers
+CXX_INCLUDES = -I/usr/local/include/opencv4
 
 CXX_FLAGS = -g
 

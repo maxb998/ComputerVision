@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o"
-  "CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o.d"
-  "CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o"
-  "CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o.d"
+  "CMakeFiles/tasksLibrary.dir/lab04_task01.cpp.o"
+  "CMakeFiles/tasksLibrary.dir/lab04_task01.cpp.o.d"
   "libtasksLibrary.a"
   "libtasksLibrary.pdb"
 )

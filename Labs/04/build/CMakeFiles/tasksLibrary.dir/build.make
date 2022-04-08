@@ -83,17 +83,33 @@ CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task01.cpp -o CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.s
 
+CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o: CMakeFiles/tasksLibrary.dir/flags.make
+CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o: ../src/lab04_task02.cpp
+CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o: CMakeFiles/tasksLibrary.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o -MF CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o.d -o CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o -c /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task02.cpp
+
+CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task02.cpp > CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.i
+
+CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/massimo/Documents/GitHub/ComputerVision/Labs/04/src/lab04_task02.cpp -o CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.s
+
 # Object files for target tasksLibrary
 tasksLibrary_OBJECTS = \
-"CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o"
+"CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o" \
+"CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o"
 
 # External object files for target tasksLibrary
 tasksLibrary_EXTERNAL_OBJECTS =
 
 libtasksLibrary.a: CMakeFiles/tasksLibrary.dir/src/lab04_task01.cpp.o
+libtasksLibrary.a: CMakeFiles/tasksLibrary.dir/src/lab04_task02.cpp.o
 libtasksLibrary.a: CMakeFiles/tasksLibrary.dir/build.make
 libtasksLibrary.a: CMakeFiles/tasksLibrary.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libtasksLibrary.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/massimo/Documents/GitHub/ComputerVision/Labs/04/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libtasksLibrary.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/tasksLibrary.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tasksLibrary.dir/link.txt --verbose=$(VERBOSE)
 

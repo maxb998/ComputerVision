@@ -11,11 +11,11 @@ add_library(
     tasksLibrary
     headers/lab04_tasks.hpp
     src/lab04_task01.cpp
+    src/lab04_task02.cpp
 )
+target_include_directories(tasksLibrary PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/headers")
 
-add_executable(lab04 src/lab04_main.cpp)
-
-target_link_libraries(lab04 ${OpenCV_LIBS} tasksLibrary)
+add_subdirectory(src)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

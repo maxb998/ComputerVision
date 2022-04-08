@@ -6,6 +6,10 @@
 			[
 				{
 					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
@@ -43,8 +47,22 @@
 						25,
 						26,
 						27,
-						28,
 						29
+					]
+				},
+				{
+					"build" : "src",
+					"jsonFile" : "directory-src-Debug-b6cf2213fc5053b67c22.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
+					"targetIndexes" : 
+					[
+						28
 					]
 				}
 			],
@@ -54,7 +72,8 @@
 				{
 					"directoryIndexes" : 
 					[
-						0
+						0,
+						1
 					],
 					"name" : "lab04",
 					"targetIndexes" : 
@@ -291,16 +310,16 @@
 					"projectIndex" : 0
 				},
 				{
-					"directoryIndex" : 0,
-					"id" : "lab04::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-lab04-Debug-3c3ea1dfc42f6804f22a.json",
+					"directoryIndex" : 1,
+					"id" : "lab04::@145eef247bfb46b6828c",
+					"jsonFile" : "target-lab04-Debug-9530f29e1d536973883f.json",
 					"name" : "lab04",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "tasksLibrary::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tasksLibrary-Debug-0a8905ac5b70fe6bfd2b.json",
+					"jsonFile" : "target-tasksLibrary-Debug-4ebc7e3877cf6d2f830f.json",
 					"name" : "tasksLibrary",
 					"projectIndex" : 0
 				}

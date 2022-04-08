@@ -1,36 +1,37 @@
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <iostream>
+#include "lab04_tasks.hpp"
 
 using namespace cv;
 using namespace std;
 
-//bool visitedPx[img.cols][img.rows];
-
-Mat angleEdgeFlt(Mat img)
+Mat myFindStraightlines(Mat img) // had to specify it was mine because there is one with the same name in openCV Mat
 {
-    Mat enhancedImg = img.clone();
+    Mat enhancedImg = Mat::zeros(img.size(), CV_8UC1);
     
-    for (int i = 0; i < img.cols; i++)
+    for (int i = 0; i < img.rows; i++)
     {
-        for (int j = 0; j < img.rows; j++)
+        for (int j = 0; j < img.cols; j++)
         {
-            visitedPx[i][j] = false;
+            if (enhancedImg.at<uchar>(i,j) == 255)
+            {
+                followLine(enhancedImg, i, j);
+            }
         }
     }
     
-
-    for (int row = 1; row < img.rows-1; row++)
-    {
-        for (int col = 1; col < img.cols-1; col++)
-        {
-            
-        }
-    }
+    
     return enhancedImg;
 }
 
-void followLine()
+void followLine(Mat &img, int row, int col)
 {
+    
+}
+
+void task02(string filename)
+{
+    // Load img and apply canny
+    Mat img = imread(filename), cannyImg = Mat::zeros(img.size(), CV_8UC1);
+    Canny(img, cannyImg, 540, 410);
+
 
 }

@@ -27,6 +27,8 @@ void task01(string filename)
     cannyData i;
     i.originImg = imread(filename);
     i.cannyImg = Mat::zeros(i.originImg.size(), CV_8UC1);
+    i.highThreshold = 100;
+    i.lowThreshold = 100;
 
     // Show original image
     namedWindow("Street scene");
@@ -36,6 +38,8 @@ void task01(string filename)
     namedWindow("Canny edges");
     createTrackbar("Threshold 1","Canny edges",&i.highThreshold,750,applyCannyOnSliders, &i);
     createTrackbar("Threshold 2","Canny edges",&i.lowThreshold,750,applyCannyOnSliders, &i);
+
+    applyCannyOnSliders(0, &i);
 
     waitKey(0);
 }
