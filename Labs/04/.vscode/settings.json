@@ -1,7 +1,7 @@
 {
     "cmake.debugConfig": {
         "args": [
-            "1"
+            "2"
         ]
     },
     "files.associations": {

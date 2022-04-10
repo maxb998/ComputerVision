@@ -15,7 +15,7 @@
 #define lab04_task02
 
     cv::Mat angleEdgeFlt(cv::Mat img);
-    void followLine(cv::Mat &img, int row, int col);
+    uchar followVerticalLine(cv::Mat &img, int row, int col, int iterNum, float slope, cv::Point first);
     void task02(std::string filename);
 
 #endif
