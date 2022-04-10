@@ -34,7 +34,7 @@ uchar followVerticalLine(Mat &img, int row, int col, int iterNum, float slope, P
         {
             if ((colPriorityOrder[i] > -1) && (colPriorityOrder[i] < img.cols))
             {
-                if (img.at<uchar>(nextRow, colPriorityOrder[i]) == 255)
+                if (img.at<uchar>(nextRow, colPriorityOrder[i]) == 255) // check if the selected pixel is part of an edge
                 {
                     float newSlope = (float)(colPriorityOrder[i]-first.x)/(float)(nextRow-first.y); // slope calculation
 
@@ -93,19 +93,6 @@ void task02(string filename)
     
     imshow("Canny Image", cannyImg);
     imshow("Processed Image", newImg);
-/*
-    for (int i = 0; i < img.rows; i++)
-    {
-        for (int j = 0; j < img.cols; j++)
-        {
-            if (cannyImg.at<uchar>(i,j) != newImg.at<uchar>(i,j))
-            {
-                cout << "IMGS DIFFERS MADAFACA" << endl;
-            }
-            
-        }
-        
-    }*/
     
     waitKey(0);
 }
