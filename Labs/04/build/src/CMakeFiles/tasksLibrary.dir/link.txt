@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtasksLibrary.a CMakeFiles/tasksLibrary.dir/lab04_task01.cpp.o
-/usr/bin/ranlib libtasksLibrary.a
