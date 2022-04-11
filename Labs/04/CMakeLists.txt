@@ -12,6 +12,7 @@ add_library(
     headers/lab04_tasks.hpp
     src/lab04_task01.cpp
     src/lab04_task02.cpp
+    src/lab04_task02_Slope.cpp
 )
 target_include_directories(tasksLibrary PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/headers")
 

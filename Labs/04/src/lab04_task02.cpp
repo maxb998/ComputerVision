@@ -1,9 +1,66 @@
 #include "lab04_tasks.hpp"
 
-#define MIN_LINE_LENGTH 10
+#define MIN_LINE_LENGTH 20      // beware that a too high value influences negatively performance of flollowVerticalLine2
+#define TRUE_LINE_COLOR (uchar)240
+#define SHORT_LINE_COLOR (uchar)50
+#define VISITED_PIXEL_COLOR (uchar)15
+#define TOLERANCE_VALUE 1.0F
+
+#define PT0 Point(col-1,row)
+#define PT1 Point(col-1,row+1)
+#define PT2 Point(col  ,row+1)
+#define PT3 Point(col+1,row+1)
+#define PT4 Point(col+1,row)
 
 using namespace cv;
 using namespace std;
+
+
+uchar followVerticalLine2(Mat &img, Slope s, float iter)
+{
+    int row = s.getLastY(), col = s.getLastX();
+    img.at<uchar>(row,col) = VISITED_PIXEL_COLOR;   // avoids traps
+
+    Point pts[] = {PT0,PT1,PT2,PT3,PT4};
+    
+    uchar finalColor = SHORT_LINE_COLOR;
+    float currentSlope = s.value();
+    bool iterated = false;
+
+    for (int i = 0; i < (sizeof(pts)/sizeof(pts[0])); i++)
+    {
+        if ((pts[i].x > -1) && (pts[i].x < img.cols) && (pts[i].y < img.rows))  // check bounds
+        {
+            if ((img.at<uchar>(pts[i]) > VISITED_PIXEL_COLOR) && (img.at<uchar>(pts[i]) != TRUE_LINE_COLOR))
+            {
+                s.setLast(pts[i]);  // move to next point
+
+                if ((iter != 0) && (abs(s.value()-currentSlope) > TOLERANCE_VALUE/iter))    // checks if adding the point will distort the line too much
+                    continue;
+
+                uchar color = followVerticalLine2(img,s,iter+1); // recursion tells if current point is source of a line
+                iterated = true;
+
+                if (color == TRUE_LINE_COLOR)
+                {
+                    img.at<uchar>(row,col) = color;
+                    finalColor = color; // needs to be part of just one line to get the color
+                }
+            }
+        }
+    }
+    
+    if (!iterated)
+    {
+        if (iter > MIN_LINE_LENGTH)
+            finalColor = TRUE_LINE_COLOR;
+        else
+            finalColor = SHORT_LINE_COLOR;
+    }
+    img.at<uchar>(row,col) = finalColor;
+
+    return finalColor;
+}
 
 uchar followVerticalLine(Mat &img, int row, int col, int iterNum, float slope, Point first)
 {
@@ -38,30 +95,43 @@ uchar followVerticalLine(Mat &img, int row, int col, int iterNum, float slope, P
                 {
                     float newSlope = (float)(colPriorityOrder[i]-first.x)/(float)(nextRow-first.y); // slope calculation
 
-                    uchar newColor = followVerticalLine(img, nextRow, colPriorityOrder[i], iterNum+1, newSlope, first); // recursive call
+                    if (abs(newSlope-slope) < 1./(float)iterNum)
+                    {
+                        uchar newColor = followVerticalLine(img, nextRow, colPriorityOrder[i], iterNum+1, newSlope, first); // recursive call
 
-                    img.at<uchar>(nextRow, colPriorityOrder[i]) = newColor; // color set
+                        img.at<uchar>(nextRow, colPriorityOrder[i]) = newColor; // color set
 
-                    return newColor;
+                        return newColor;
+                    }
                 }
             }
         }
     }
 
-    // if this point is reached, either there are no more pixel to check because the algorithm reached the end of the image
-    // or the line is over.
-    // so the function returns 240 if the line is long enough or it returns 15 if the line is too short
-    // the reason behind the choice of the values lies in the binary value of the code:
-    //      0  => 00000000
-    //      15 => 00001111
-    //      240=> 11110000
-    //      255=> 11111111
-    // it just feels better for no reason
-
     if (iterNum > MIN_LINE_LENGTH)
-        return (uchar)240;  // the line is valid
+        return TRUE_LINE_COLOR;  // the line is valid
     else
-        return (uchar)15;   // line to short
+        return SHORT_LINE_COLOR;   // line to short
+}
+
+Mat myFindStraightlines2(Mat img)
+{
+    Mat enhancedImg = img.clone();
+    
+    for (int row = 0; row < img.rows; row++)
+    {
+        for (int col = 0; col < img.cols; col++)
+        {
+            if (enhancedImg.at<uchar>(row,col) == 255)
+            {
+                Slope s(Point(col,row));
+                followVerticalLine2(enhancedImg,s,0.0F);
+            }
+        }
+    }
+
+
+    return enhancedImg;
 }
 
 Mat myFindStraightlines(Mat img) // had to specify it was mine because there is one with the same name in openCV Mat
@@ -83,16 +153,64 @@ Mat myFindStraightlines(Mat img) // had to specify it was mine because there is 
     return enhancedImg;
 }
 
+Mat checkColorsAroundLine(Mat img, Mat lines, uchar colorThreshold, int neighborhoodSize)   // returns black image with the only white pixels being the ones that are near a line and the color is "greater" than the threshold
+{
+    Mat coloredLines = Mat::zeros(img.size(),CV_8UC1);
+
+    for (int row = 0; row < img.rows; row++)
+    {
+        for (int col = 0; col < img.cols; col++)
+        {
+            // for each pixel that belongs into a line(defined by non black pixels in Mat lines) check neighborhood
+            if ((lines.at<uchar>(row,col) < TRUE_LINE_COLOR))
+                continue;
+            for (int i = row-neighborhoodSize; i < row+neighborhoodSize+1; i++)
+            {
+                for (int j = col-neighborhoodSize; j < col+neighborhoodSize+1; j++)
+                {
+                    if ((i > -1) && (i < img.rows) && (j > -1) && (j < img.cols))
+                    {
+                        if ((img.at<Vec3b>(i,j)[0] >= colorThreshold) && (img.at<Vec3b>(i,j)[1] >= colorThreshold) && (img.at<Vec3b>(i,j)[2] >= colorThreshold))
+                        {
+                            // set the color of the current pixel and the neighbor one to white
+                            coloredLines.at<uchar>(row,col) = (uchar)255;
+                            coloredLines.at<uchar>(i,j) = (uchar)255;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return coloredLines;
+}
+
 void task02(string filename)
 {
     // Load img and apply canny
     Mat img = imread(filename), cannyImg = Mat::zeros(img.size(), CV_8UC1);
-    Canny(img, cannyImg, 500, 410);
+    Canny(img, cannyImg, 540, 410);
 
-    Mat newImg = myFindStraightlines(cannyImg);
+    //cout << "Canny done" << endl;
+
+    Mat lineFlt1 = myFindStraightlines(cannyImg);
+    cout << "line filtering 1\n***SECOND METHOD PROBABLY HAS EXPONENTIAL TIME COMPLEXITY, PLEASE WAIT A BIT OR SET \"MIN_LINE_LENGTH\" TO A LOWER VALUE" << endl;
+    Mat lineFlt2 = myFindStraightlines2(cannyImg);
+    cout << "line filtering 2" << endl;
     
     imshow("Canny Image", cannyImg);
-    imshow("Processed Image", newImg);
+    imshow("Line filtered picture method 1", lineFlt1);
+    imshow("Line filtered picture method 2", lineFlt2);
+
+    Mat colorFlt0 = checkColorsAroundLine(img,cannyImg,(char)250,3);
+    cout << "color filtering 0" << endl;
+    Mat colorFlt1 = checkColorsAroundLine(img,lineFlt1,(char)250,3);
+    cout << "color filtering 1" << endl;
+    Mat colorFlt2 = checkColorsAroundLine(img,lineFlt2,(char)250,3);
+    cout << "color filtering 2" << endl;
+
+    imshow("Canny + Color filtering", colorFlt0);
+    imshow("Canny + Line filtering method 1 + Color filtering", colorFlt1);
+    imshow("Canny + Line filtering method 2 + Color filtering", colorFlt2);
     
     waitKey(0);
 }
