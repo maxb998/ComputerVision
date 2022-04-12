@@ -3,7 +3,7 @@
 #include "lab05_tasks.hpp"
 
 // name of the image that the tasks automatically pick. The image must be inside the docs folder in order for this to work properly
-#define defImgName "Asphalt-1.png"
+#define defImgName "Asphalt-2.png"
 
 using namespace std;
 
