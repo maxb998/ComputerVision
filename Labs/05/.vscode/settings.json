@@ -1,0 +1,11 @@
+{
+    "cmake.debugConfig": {
+        "args": [
+            "2"
+        ]
+    },
+    "files.associations": {
+        "stdexcept": "cpp",
+        "iostream": "cpp"
+    }
+}
