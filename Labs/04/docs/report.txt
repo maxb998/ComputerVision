@@ -22,6 +22,9 @@ color filtering.
 
 TASK 3
 Struggled a bit on understanding how to show the lines in the image, but with the help of the example offered by opencv documentation I managed to undestand it.
+Still couldn't find a way to make HoughLines find the rightmost street lines(probably theta is greater than pi/2 which means that its sin is negative and therefore
+when I'm trying to draw the line, this one is actually outside of the bounds of the image and therefore is not shown. Just I wild guess since I used all my time on
+task 2).
 
 TASK 4
 This one was an easy one.
