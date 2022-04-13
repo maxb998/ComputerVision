@@ -45,6 +45,14 @@
 #ifndef lab04_task03
 #define lab04_task03
 
+    void drawLinesOnMat(cv::Mat &img, std::vector<cv::Vec3f> lines, cv::Vec3b color, int nLines, int lineLength);
     void task03(std::string filename);
+
+#endif
+
+#ifndef lab04_task04
+#define lab04_task04
+
+    void task04(std::string filename);
 
 #endif

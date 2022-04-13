@@ -17,21 +17,18 @@ void drawLinesOnMat(Mat &img, vector<Vec3f> lines, Vec3b color, int nLines, int 
         pt2.x = cvRound(x0 - lineLength*(-b)/2);
         pt2.y = cvRound(y0 - lineLength*(a)/2);
 
-        line( img, pt1, pt2, Scalar(color), 1);
-        cout << i << endl;
+        line( img, pt1, pt2, Scalar(color), 3);
     }
 }
 
-void fillSpaceBetween2RedLines(Mat &img, Vec3b color)
+void fillSpaceBetweenLines(Mat &img, Vec3f line1, Vec3f line2, Vec3b color, int lineLength)
 {
-    bool betweenLines = false;
     for (int row = 0; row < img.rows; row++)
     {
         for (int col = 0; col < img.cols; col++)
         {
-            /* code */
+            
         }
-        betweenLines = false;
     }
     
 }
