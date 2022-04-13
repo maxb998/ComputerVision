@@ -1,0 +1,29 @@
+TASK 1
+I firstly wrote it using global variables because I was lazy, I then proceeded to write a code which does not use global variables.
+Task very similar to one of lab 3 so it was pretty easy
+
+TASK 2
+Hit like a truck at the start. Couldn't figure out how to process straight lines from canny.
+I wrote two algorithms:
+    1) FIRST AND EASY: this one simply tries to follow a line by recursively checking ONLY the pixels below in an order given by a slope indicator calculated
+                        between the first pixel iterated and the last one found. A broken algorithm because a line that curves gently is recognized as straight.
+    
+    2) SECOND ATTEMPT: This one was a pain, still is a pain because it would run perfectly on a non-deterministic machine since it checks EVERY SINGLE POSSIBLE
+                        LINE THAT THERE COULD BE IN THE IMAGE, which isn't a very good solution.
+                        Unlike it's father(method 1) this one is not fooled by gentle curves, well, at least not in the last part of the line, because it implements
+                        an error threshold check on the slope(which is still calculated between the first point and the last point found) which has inverse 
+                        proportionality with the number of iteration that the algorithm does. Worst case scenario is that a line is a bit of a snake at the
+                        beginning, but straightens up as it grows longer.
+                        I belive it could be significantly improved, however there are two tasks left and time is running out.
+
+As proud as I was of my little algorithms(because I actually managed to implement them more than the logic behing them) I found out that when cross filtering
+between color thresholding and simple canny lines the result is very similar to the result of the process of applying any of the two algorithms above and than
+color filtering.
+
+TASK 3
+Struggled a bit on understanding how to show the lines in the image, but with the help of the example offered by opencv documentation I managed to undestand it.
+
+TASK 4
+This one was an easy one.
+Struggled to find the correct paramenters for houghCircles to actually detect anything so I helped myself with a for loop testing different values until I found
+the correct one.

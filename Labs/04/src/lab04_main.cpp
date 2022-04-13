@@ -71,7 +71,7 @@ int main(int argc, char** argv)
     {
         throw invalid_argument("Usage: <path>/lab04 <task n°> <(OPTIONAL)image path>");
     }
-    cout << argv[0] << endl;
+    
     // Check if a file path is specified, otherwise tries to take the image in the default location
     FILE *file;
     string filename;

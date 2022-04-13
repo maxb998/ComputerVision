@@ -21,18 +21,6 @@ void drawLinesOnMat(Mat &img, vector<Vec3f> lines, Vec3b color, int nLines, int 
     }
 }
 
-void fillSpaceBetweenLines(Mat &img, Vec3f line1, Vec3f line2, Vec3b color, int lineLength)
-{
-    for (int row = 0; row < img.rows; row++)
-    {
-        for (int col = 0; col < img.cols; col++)
-        {
-            
-        }
-    }
-    
-}
-
 void task03(string filename)
 {
     Mat img = imread(filename);

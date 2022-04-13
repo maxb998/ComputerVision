@@ -190,23 +190,21 @@ void task02(string filename)
     Mat img = imread(filename), cannyImg = Mat::zeros(img.size(), CV_8UC1);
     Canny(img, cannyImg, 540, 410);
 
-    //cout << "Canny done" << endl;
-
     Mat lineFlt1 = myFindStraightlines(cannyImg);
-    cout << "line filtering 1\n***SECOND METHOD PROBABLY HAS EXPONENTIAL TIME COMPLEXITY, PLEASE WAIT A BIT OR SET \"MIN_LINE_LENGTH\" TO A LOWER VALUE" << endl;
+
+    // must check command line in order to see if the method has returned something
+    cout << "START METHOD 2 TO FIND STRAIGHT LINES, WHICH PROBABLY HAS EXPONENTIAL TIME COMPLEXITY(OR EVEN WORSE), PLEASE SET \"MIN_LINE_LENGTH\" TO A LOWER VALUE" << endl;
     Mat lineFlt2 = myFindStraightlines2(cannyImg);
-    cout << "line filtering 2" << endl;
+    cout << "Not trapped inside myFindStraightlines2 recursion" << endl;
     
-    imshow("Canny Image", cannyImg);
-    imshow("Line filtered picture method 1", lineFlt1);
-    imshow("Line filtered picture method 2", lineFlt2);
+    imshow("Canny ONLY", cannyImg);
+    imshow("Canny + Line filtering method 1", lineFlt1);
+    imshow("Canny + Line filtering method 2", lineFlt2);
 
     Mat colorFlt0 = checkColorsAroundLine(img,cannyImg,(char)250,3);
-    cout << "color filtering 0" << endl;
     Mat colorFlt1 = checkColorsAroundLine(img,lineFlt1,(char)250,3);
-    cout << "color filtering 1" << endl;
     Mat colorFlt2 = checkColorsAroundLine(img,lineFlt2,(char)250,3);
-    cout << "color filtering 2" << endl;
+
 
     imshow("Canny + Color filtering", colorFlt0);
     imshow("Canny + Line filtering method 1 + Color filtering", colorFlt1);
