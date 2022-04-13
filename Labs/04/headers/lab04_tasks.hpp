@@ -41,3 +41,10 @@
     };
 
 #endif
+
+#ifndef lab04_task03
+#define lab04_task03
+
+    void task03(std::string filename);
+
+#endif

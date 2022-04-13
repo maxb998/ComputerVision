@@ -104,6 +104,7 @@ int main(int argc, char** argv)
         break;
 
     case 3:
+        task03(filename);
         break;
 
     case 4:
