@@ -1,119 +1,279 @@
 #include "lab05_tasks.hpp"
 
+#define PT0 Point(col - 1, row - 1)
+#define PT1 Point(col    , row - 1)
+#define PT2 Point(col + 1, row - 1)
+#define PT3 Point(col - 1, row    )
+#define PT4 Point(col    , row    )
+#define PT5 Point(col + 1, row    )
+#define PT6 Point(col - 1, row + 1)
+#define PT7 Point(col    , row + 1)
+#define PT8 Point(col + 1, row + 1)
+
 using namespace cv;
 using namespace std;
 
 void task01(string filename)
 {
-    const int medianKSize = 7;
+    const int medianKSize = 7, kmeansK = 10;
+    const uchar regGrowSeedThreshold = (uchar)0, regGrowGrowthThreshold = (uchar)60, dynRegGrowthThreshDivivend = (uchar) 5;
 
     Mat img = imread(filename);
-    imshow("Original Picture", img);
+    imshow("Original picture", img);
 
-    Mat grayImg = Mat::zeros(img.size(), CV_8UC1);
-    cvtColor(img, grayImg, COLOR_BGR2GRAY);
-    imshow("Grayscale Picture", grayImg);
+    /*Mat kmSeg = kmeansSegmentation(img, kmeansK, medianKSize);
+    imshow("KMeans segmentation", kmSeg);*/
 
-    Mat med = Mat::zeros(grayImg.size(), grayImg.type());
-    medianBlur(grayImg, med, medianKSize);
-    imshow("Median Filtered Picture", med);
+    Mat km = kmeansSegmentCrack(img, kmeansK, medianKSize);
+    imshow("Segmented crack using Kmeans", km);
+
+    Mat staticReg = staticThresholdRegionGrowing(img, regGrowSeedThreshold, regGrowGrowthThreshold, medianKSize);
+    imshow("Segmented crack using static threshold region growing", staticReg);
+
+    // this last one method seems to work the best... more or less
+    Mat dynamicReg = dynamicThresholdRegionGrowing(img, regGrowSeedThreshold, regGrowGrowthThreshold, dynRegGrowthThreshDivivend, medianKSize);
+    imshow("Segmented crack using DYNAMIC threshold region growing", dynamicReg);
     
-
-
     waitKey(0);
 }
 
-Mat thresholding(Mat img) // region growing
+Mat kmeansSegmentation(Mat img, const int k, const int medianKSize)
 {
-    equalizeHist(img, img);
-    for (int row = 0; row < img.rows; row++)
-    {
-        for (int col = 0; col < img.cols; col++)
-        {
-            if (img.at<uchar>(row,col) <= (uchar)0)
-                img.at<uchar>(row,col) = 255;
-            else
-                img.at<uchar>(row,col) = 0;
-        }
-    }
-    imshow("THRESHOLDING", img);
+    // convert image to grayscale and equalize
+    Mat grayEqualizedImg = Mat::zeros(img.size(), CV_8UC1);
+    cvtColor(img, grayEqualizedImg, COLOR_BGR2GRAY);
+    equalizeHist(grayEqualizedImg, grayEqualizedImg);
 
-    waitKey(0);
-}
+    // filter and convert to proper settings for kmeans function
+    Mat kmeansMat = Mat::zeros(grayEqualizedImg.size(), grayEqualizedImg.type());
+    medianBlur(grayEqualizedImg, kmeansMat, medianKSize);
+    kmeansMat.convertTo(kmeansMat, CV_32F);
+    kmeansMat = kmeansMat.reshape(1,kmeansMat.cols*kmeansMat.rows);
 
-void task01_Kmeans(Mat img)     // BROKEN IMG SIZES
-{
-    const int k = 2;
+    // init values returned by kmeans
+    Mat labels = Mat::ones(kmeansMat.size(), CV_32S);
+    vector<float> centers;
 
-    img.convertTo(img, CV_32F);
-    img = img.reshape(1,img.cols*img.rows);
+    // kmeans
+    kmeans(kmeansMat, k, labels, TermCriteria( TermCriteria::EPS+TermCriteria::MAX_ITER, 10, 1.0), 2, KMEANS_PP_CENTERS, centers);
 
-
-    Mat labels = Mat::ones(img.size(), CV_32S);
-
-    double minVal, maxVal;
-    Point minPt, maxPt;
-    minMaxLoc(img, &minVal, &maxVal, &minPt, &maxPt);
-
-    float threshVal = (float)(minVal);
-
-    for (int i = 0; i < labels.rows; i++)
-    {
-        if (img.at<float>(i,0) <= threshVal)
-            labels.at<int>(i,0) = 0;
-        else
-            labels.at<int>(i,0) = 1;   
-    }
-    
-    kmeans(img, k, labels, TermCriteria( TermCriteria::EPS+TermCriteria::MAX_ITER, 10, 1.0), 1, KMEANS_USE_INITIAL_LABELS);
-
+    // show the result of clustering in a new picture using center of each cluster found by kmeans as colors
     Mat seg = Mat::zeros(img.size(), CV_8UC1);
-
     for (int row = 0; row < img.rows; row++)
     {
         for (int col = 0; col < img.cols; col++)
         {
             int lblIndex = img.cols * row + col;
-            seg.at<uchar>(row,col) = (uchar)(255 * labels.at<int>(lblIndex,0) / k);            
+            seg.at<uchar>(row,col) = (uchar)centers[labels.at<int>(lblIndex,0)];          
         }
-        
     }
-    
-    imshow("KMEANS", seg);
 
-    waitKey(0);
+    return seg;
 }
 
-void experiments(string filename)
+Mat kmeansSegmentCrack(Mat img, const int k, const int medianKSize)
 {
-    const int medianKSize = 7, k = 2;
+    // convert image to grayscale and equalize
+    Mat grayEqualizedImg = Mat::zeros(img.size(), CV_8UC1);
+    cvtColor(img, grayEqualizedImg, COLOR_BGR2GRAY);
+    equalizeHist(grayEqualizedImg, grayEqualizedImg);
 
-    Mat img = imread(filename);
-    imshow("Original Picture", img);
+    // filter and convert to proper settings for kmeans function
+    Mat kmeansMat = Mat::zeros(grayEqualizedImg.size(), grayEqualizedImg.type());
+    medianBlur(grayEqualizedImg, kmeansMat, medianKSize);
+    kmeansMat.convertTo(kmeansMat, CV_32F);
+    kmeansMat = kmeansMat.reshape(1,kmeansMat.cols*kmeansMat.rows);
 
-    Mat grayImg = Mat::zeros(img.size(), CV_8UC1);
-    cvtColor(img, grayImg, COLOR_BGR2GRAY);
-    imshow("Grayscale Picture", grayImg);
+    // init values returned by kmeans
+    Mat labels = Mat::ones(kmeansMat.size(), CV_32S);
+    vector<float> centers;
 
-    Mat med = Mat::zeros(grayImg.size(), grayImg.type());
-    medianBlur(grayImg, med, medianKSize);
-    imshow("Median Filtered Picture", med);
-    equalizeHist(med,med);
+    // kmeans
+    kmeans(kmeansMat, k, labels, TermCriteria( TermCriteria::EPS+TermCriteria::MAX_ITER, 10, 1.0), 2, KMEANS_PP_CENTERS, centers);
 
+    // find label of center with minimum value
+    int minClusterId = 0;
+    for (int i = 1; i < k; i++)
+        if (centers[i] < centers[minClusterId])
+            minClusterId = i;
 
-    double minVal, maxVal;
-    Point minPt, maxPt;
-    minMaxLoc(med, &minVal, &maxVal, &minPt, &maxPt);
+    // show the crack region in white
+    Mat seg = Mat::zeros(img.size(), CV_8UC1);
+    for (int row = 0; row < img.rows; row++)
+    {
+        for (int col = 0; col < img.cols; col++)
+        {
+            int lblIndex = img.cols * row + col;
+            if (labels.at<int>(lblIndex,0) == minClusterId)
+                seg.at<uchar>(row,col) = (uchar)255;
+        }
+    }
 
-    cout << "Max = " << maxVal << "       Min = " << minVal << endl;
+    return seg;
+}
 
-    Scalar myMean, stdDev;
-    meanStdDev(med, myMean, stdDev);
+Mat staticThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar growthThreshold, const int medianKSize)
+{
+    // converto to grayscale
+    Mat gray = Mat::zeros(img.size(), CV_8UC1);
+    cvtColor(img, gray, COLOR_BGR2GRAY);
 
-    cout << "mean = " << myMean(0) << endl;
-    cout << "std dev = " << stdDev(0) << endl;
+    // apply filter to try to remove tarmac little stones and details, which can be treated as salt & pepper noise
+    medianBlur(gray,gray,medianKSize);
 
-    double thresholdValue = round(myMean(0) - stdDev(0));
-    cout << "threshold = " << thresholdValue << endl;
+    // equalize image to get darkest points to become of value 0
+    Mat equalized = Mat::zeros(img.size(), img.type());
+    equalizeHist(gray, equalized);
+    Mat seeds = equalized.clone();
+
+    // highlight all points with value 0, which are the darkest ones, which, in correct light exposition, are effectively the cracks(or new tarmac)
+    for (int row = 0; row < seeds.rows; row++)
+    {
+        for (int col = 0; col < seeds.cols; col++)
+        {
+            if (equalized.at<uchar>(row,col) <= seedThreshold)
+                seeds.at<uchar>(row,col) = (uchar)254;     // 254 so 255 can be setted at the end other useless loops
+            else
+                seeds.at<uchar>(row,col) = (uchar)0;
+        }
+    }
+    //imshow("THRESHOLD SET OF POINTS", seeds);     // DEBUG
+
+    // "grow" previously highlighted region with a static threshold technique
+    Mat crackRegion = seeds.clone();
+    uchar T = growthThreshold, regionVal = seedThreshold;
+    bool changed = true;
+
+    while (changed)
+    {
+        changed = false;
+        for (int row = 0; row < crackRegion.rows; row++)
+        {
+            for (int col = 0; col < crackRegion.cols; col++)
+            {
+                if (crackRegion.at<uchar>(row, col) == (uchar)254) // check 8-connected
+                {
+                    vector<Point> pts = correctNeighbor(row, col, crackRegion.rows, crackRegion.cols);
+
+                    for (unsigned long i = 0; i < pts.size(); i++)
+                    {
+                        if ((crackRegion.at<uchar>(pts[i]) != (uchar)255) && (equalized.at<uchar>(pts[i]) - regionVal < T))
+                        {
+                            crackRegion.at<uchar>(pts[i]) = (uchar)254;
+                        }
+                    }
+                    crackRegion.at<uchar>(row, col) = (uchar)255;
+                    changed = true;
+                }
+            }
+        }
+    }
     
+    return crackRegion;
+}
+
+Mat dynamicThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar growthThreshold, const uchar distanceAttenuator, const int medianKSize)
+{
+    // converto to grayscale
+    Mat gray = Mat::zeros(img.size(), CV_8UC1);
+    cvtColor(img, gray, COLOR_BGR2GRAY);
+
+    // apply filter to try to remove tarmac little stones and details, which can be treated as salt & pepper noise
+    medianBlur(gray,gray,medianKSize);
+
+    // equalize image to get darkest points to become of value 0
+    Mat equalized = Mat::zeros(img.size(), img.type());
+    equalizeHist(gray, equalized);
+    Mat seeds = equalized.clone();
+
+    // highlight all points with value 0, which are the darkest ones, which, in correct light exposition, are effectively the cracks(or new tarmac)
+    for (int row = 0; row < seeds.rows; row++)
+    {
+        for (int col = 0; col < seeds.cols; col++)
+        {
+            if (equalized.at<uchar>(row,col) <= seedThreshold)
+                seeds.at<uchar>(row,col) = (uchar)254;
+            else
+                seeds.at<uchar>(row,col) = (uchar)0;
+        }
+    }
+    //imshow("THRESHOLD SET OF POINTS", seeds);     // DEBUG
+
+    // color of white the region containing the crack
+    Mat crackRegion = seeds.clone();
+    Mat supportMat = Mat::zeros(crackRegion.size(), CV_8UC1);   // used to keep the number of iterations of "distance" from the seeds
+    uchar regionVal = seedThreshold;
+    int T = (int)growthThreshold;
+    bool changed = true;
+    int iterNum = 1;
+
+    while (changed)
+    {
+        changed = false;
+        for (int row = 0; row < crackRegion.rows; row++)
+        {
+            for (int col = 0; col < crackRegion.cols; col++)
+            {
+                if (crackRegion.at<uchar>(row, col) == (uchar)254) // check 8-connected
+                {
+                    vector<Point> pts = correctNeighbor(row, col, crackRegion.rows, crackRegion.cols);
+
+                    for (unsigned long i = 0; i < pts.size(); i++)
+                    {
+                        if ((crackRegion.at<uchar>(pts[i]) != (uchar)255) && ((int)equalized.at<uchar>(pts[i]) - regionVal + (int)supportMat.at<uchar>(row,col)/distanceAttenuator < T))
+                        {
+                            crackRegion.at<uchar>(pts[i]) = (uchar)254;
+                            supportMat.at<uchar>(pts[i]) = supportMat.at<uchar>(row,col) + (uchar)1;
+                        }
+                    }
+                    crackRegion.at<uchar>(row, col) = (uchar)255;
+                    changed = true;
+                }
+            }
+        }
+        iterNum++;
+    }
+    
+    return crackRegion;
+}
+
+vector<Point> correctNeighbor (int row, int col, int matRows, int matCols)
+{
+    vector<Point> pts = {PT0, PT1, PT2, PT3, PT5, PT6, PT7, PT8};
+    if (row == 0)                       // first row check
+    {
+        pts.clear();
+        pts.shrink_to_fit();
+        if (col == 0)                   // first pixel check
+            vector<Point> pts = {PT5, PT7, PT8};
+        else if (col == matCols - 1)    // last row first pixel check
+            vector<Point> pts = {PT3, PT6, PT7};
+        else                            // any other first row pixel check
+            vector<Point> pts = {PT3, PT5, PT6, PT7, PT8};
+    }
+    else if (row == matRows - 1)        // last row check
+    {
+        pts.clear();
+        pts.shrink_to_fit();
+        if (col == 0)                   // last row first pixel check
+            vector<Point> pts = {PT1, PT2, PT5};
+        else if (col == matCols - 1)    // last pixel check
+            vector<Point> pts = {PT0, PT1, PT3};
+        else                            // any other last row pixel check
+            vector<Point> pts = {PT3, PT5, PT6, PT7, PT8};
+    }
+    else if (col == 0)                  // any first column pixel check(other than first and last row)
+    {
+        pts.clear();
+        pts.shrink_to_fit();
+        vector<Point> pts = {PT1, PT2, PT5, PT7, PT8};
+    }
+    else if (col == matCols -1)         // any last column pixel check(other than first and last row)
+    {
+        pts.clear();
+        pts.shrink_to_fit();
+        vector<Point> pts = {PT0, PT1, PT3, PT6, PT7};
+    }
+
+    return pts;
 }
