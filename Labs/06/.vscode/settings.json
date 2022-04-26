@@ -1,0 +1,12 @@
+{
+    "cmake.debugConfig": {
+        "args": [
+            "../../docs/Sample_images/Images/all_souls_000002.jpg",
+            "../../docs/Sample_images/Images/all_souls_000006.jpg"
+        ]
+    },
+    "files.associations": {
+        "stdexcept": "cpp",
+        "iostream": "cpp"
+    }
+}
