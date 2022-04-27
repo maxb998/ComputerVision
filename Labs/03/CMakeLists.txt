@@ -7,7 +7,7 @@ enable_testing()
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(lab03 lab03_task05.cpp)
+add_executable(lab03 lab03_task02.cpp)
 
 target_link_libraries(lab03 ${OpenCV_LIBS})
 

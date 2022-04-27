@@ -1,8 +1,7 @@
 {
     "cmake.debugConfig": {
         "args": [
-            "2",
-            "../../docs/street_scene.png"
+            "~/Documents/GitHub/ComputerVision/Labs/03/robocup.jpg"
         ]
     },
     "files.associations": {

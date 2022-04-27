@@ -1,6 +1,0 @@
-1)  Canny the image multiple times while tuning the parameters of canny itself trying to get a certain amount of pixels white.
-    Issues with this method might be street lines
-
-    Early testing shows it works like garbage
-
-2)  ??

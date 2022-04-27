@@ -21,57 +21,29 @@ void task01(string filename)
     Mat img = imread(filename);
     imshow("Original picture", img);
 
-    /*Mat kmSeg = kmeansSegmentation(img, kmeansK, medianKSize);
-    imshow("KMeans segmentation", kmSeg);*/
-
-    Mat km = kmeansSegmentCrack(img, kmeansK, medianKSize);
+    cout << "\nPress any key to continue.\nCurrent: kmeans method" << endl;
+    Mat km = t1_kmeansSegmentCrack(img, kmeansK, medianKSize);
     imshow("Segmented crack using Kmeans", km);
+    waitKey(0);
+    destroyWindow("Segmented crack using Kmeans");
 
-    Mat staticReg = staticThresholdRegionGrowing(img, regGrowSeedThreshold, regGrowGrowthThreshold, medianKSize);
+    cout << "\nPress any key to continue.\nCurrent: simple region growing" << endl;
+    Mat staticReg = t1_staticThresholdRegionGrowing(img, regGrowSeedThreshold, regGrowGrowthThreshold, medianKSize);
     imshow("Segmented crack using static threshold region growing", staticReg);
+    waitKey(0);
+    destroyWindow("Segmented crack using static threshold region growing");
 
     // this last one method seems to work the best... more or less
-    Mat dynamicReg = dynamicThresholdRegionGrowing(img, regGrowSeedThreshold, regGrowGrowthThreshold, dynRegGrowthThreshDivivend, medianKSize);
+    cout << "\nPress any key to continue.\nCurrent: less-simple region growing" << endl;
+    Mat dynamicReg = t1_dynamicThresholdRegionGrowing(img, regGrowSeedThreshold, regGrowGrowthThreshold, dynRegGrowthThreshDivivend, medianKSize);
     imshow("Segmented crack using DYNAMIC threshold region growing", dynamicReg);
+    waitKey(0);
+    destroyWindow("Segmented crack using DYNAMIC threshold region growing");
     
     waitKey(0);
 }
 
-Mat kmeansSegmentation(Mat img, const int k, const int medianKSize)
-{
-    // convert image to grayscale and equalize
-    Mat grayEqualizedImg = Mat::zeros(img.size(), CV_8UC1);
-    cvtColor(img, grayEqualizedImg, COLOR_BGR2GRAY);
-    equalizeHist(grayEqualizedImg, grayEqualizedImg);
-
-    // filter and convert to proper settings for kmeans function
-    Mat kmeansMat = Mat::zeros(grayEqualizedImg.size(), grayEqualizedImg.type());
-    medianBlur(grayEqualizedImg, kmeansMat, medianKSize);
-    kmeansMat.convertTo(kmeansMat, CV_32F);
-    kmeansMat = kmeansMat.reshape(1,kmeansMat.cols*kmeansMat.rows);
-
-    // init values returned by kmeans
-    Mat labels = Mat::ones(kmeansMat.size(), CV_32S);
-    vector<float> centers;
-
-    // kmeans
-    kmeans(kmeansMat, k, labels, TermCriteria( TermCriteria::EPS+TermCriteria::MAX_ITER, 10, 1.0), 2, KMEANS_PP_CENTERS, centers);
-
-    // show the result of clustering in a new picture using center of each cluster found by kmeans as colors
-    Mat seg = Mat::zeros(img.size(), CV_8UC1);
-    for (int row = 0; row < img.rows; row++)
-    {
-        for (int col = 0; col < img.cols; col++)
-        {
-            int lblIndex = img.cols * row + col;
-            seg.at<uchar>(row,col) = (uchar)centers[labels.at<int>(lblIndex,0)];          
-        }
-    }
-
-    return seg;
-}
-
-Mat kmeansSegmentCrack(Mat img, const int k, const int medianKSize)
+Mat t1_kmeansSegmentCrack(Mat img, const int k, const int medianKSize)
 {
     // convert image to grayscale and equalize
     Mat grayEqualizedImg = Mat::zeros(img.size(), CV_8UC1);
@@ -112,7 +84,7 @@ Mat kmeansSegmentCrack(Mat img, const int k, const int medianKSize)
     return seg;
 }
 
-Mat staticThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar growthThreshold, const int medianKSize)
+Mat t1_staticThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar growthThreshold, const int medianKSize)
 {
     // converto to grayscale
     Mat gray = Mat::zeros(img.size(), CV_8UC1);
@@ -153,7 +125,7 @@ Mat staticThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar
             {
                 if (crackRegion.at<uchar>(row, col) == (uchar)254) // check 8-connected
                 {
-                    vector<Point> pts = correctNeighbor(row, col, crackRegion.rows, crackRegion.cols);
+                    vector<Point> pts = t1_correctNeighbor(row, col, crackRegion.rows, crackRegion.cols);
 
                     for (unsigned long i = 0; i < pts.size(); i++)
                     {
@@ -172,7 +144,7 @@ Mat staticThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar
     return crackRegion;
 }
 
-Mat dynamicThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar growthThreshold, const uchar distanceAttenuator, const int medianKSize)
+Mat t1_dynamicThresholdRegionGrowing(Mat img, const uchar seedThreshold, const uchar growthThreshold, const uchar distanceAttenuator, const int medianKSize)
 {
     // converto to grayscale
     Mat gray = Mat::zeros(img.size(), CV_8UC1);
@@ -216,7 +188,7 @@ Mat dynamicThresholdRegionGrowing(Mat img, const uchar seedThreshold, const ucha
             {
                 if (crackRegion.at<uchar>(row, col) == (uchar)254) // check 8-connected
                 {
-                    vector<Point> pts = correctNeighbor(row, col, crackRegion.rows, crackRegion.cols);
+                    vector<Point> pts = t1_correctNeighbor(row, col, crackRegion.rows, crackRegion.cols);
 
                     for (unsigned long i = 0; i < pts.size(); i++)
                     {
@@ -237,7 +209,7 @@ Mat dynamicThresholdRegionGrowing(Mat img, const uchar seedThreshold, const ucha
     return crackRegion;
 }
 
-vector<Point> correctNeighbor (int row, int col, int matRows, int matCols)
+vector<Point> t1_correctNeighbor (int row, int col, int matRows, int matCols)
 {
     vector<Point> pts = {PT0, PT1, PT2, PT3, PT5, PT6, PT7, PT8};
     if (row == 0)                       // first row check

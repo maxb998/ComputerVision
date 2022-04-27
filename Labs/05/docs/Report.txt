@@ -1,0 +1,16 @@
+Massimo Boldrin Matr. 2056809
+
+TASK 01:
+	This one was the one which tooks the most time to complete(And still does not show a too good of a result).
+	Attempted this in with three methods: Kmeans, region growing with static thresholding and region growing with a dynamic thresholding(gets lower as the points examined are farther from the original points).
+	The last method shows the best result, thought I think an AI would probably work better, but I don't think I have the tools nor the knowledge right now to implement one as such(Plus I was tired on working on that)
+	
+TASK 02:
+	Done in two ways, kmeans and watershed. The first method is a more general method, while the watershed method, or at least my implementation of it, works bases on some user tuned paramethers specifically for the image in question.
+	In few words, second method overfits, and won't work on a different image unless the picked points are picked again on the image.
+	Of course the result of the watershed method is better since it was practically desined to work with this picture, however, even if the kmeans approach is not as precise, It's kind of good to see that tha more generic method works actually well.
+	
+TASK 03:
+	Tried to do with watershed at first, but it didn't really work for some reason, so I switched back to my favorite type of clustering: Kmeans.
+	By trial and error I found how much big K needed to be in order to create clusters that segments only the shirts(exept the black one), which was k = 8 and than I just needed to merge the clusters which contained the shirt pixels.
+	Seleced also the ball, probably a larger number of cluster would exlude that.

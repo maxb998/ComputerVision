@@ -17,7 +17,7 @@ void callbackFunction(int event, int x, int y, int flags, void* userdata)
 
 int main(int argc, char** argv)
 {
-    Mat img = imread("robocup.jpg");
+    Mat img = imread(argv[1]);
 
     namedWindow("MAIN", 1);
     imshow("MAIN", img);
