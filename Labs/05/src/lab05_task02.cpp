@@ -10,7 +10,7 @@ void task02(string filename)
 
     Mat blurred;
     medianBlur(img, blurred, 7);
-    Mat kmImg = t2_kmeansSegmentation(blurred, 3);
+    Mat kmImg = t2_kmeansSegmentation(blurred, 10);
     imshow("Kmeans method result", kmImg);
     
     Mat watershRegions = t2_watershedTechnique(img);
