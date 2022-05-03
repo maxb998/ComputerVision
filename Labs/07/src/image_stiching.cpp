@@ -7,16 +7,7 @@
 using namespace cv;
 using namespace std;
 
-class image_stiching
-{
-private:
-    vector<Mat> sourceImg;
-public:
-    image_stiching(string pathAndPattern);
-    ~image_stiching();
-};
-
-image_stiching::image_stiching(string pathAndPattern)
+StichImages::StichImages(string pathAndPattern)
 {
     vector<string> filenames;
     glob(pathAndPattern, filenames, true);
@@ -29,17 +20,23 @@ image_stiching::image_stiching(string pathAndPattern)
     for (int i = 0; i < filenames.size(); i++)
     {
         img = imread(filenames[i]);
-        sourceImg.push_back(img);
+        sourceImgs.push_back(img);
     }
 
-    for (int i = 0; i < sourceImg.size(); i++)
+    namedWindow("IMAGE_TEST");
+
+    for (int i = 0; i < sourceImgs.size(); i++)
     {
-        imread
+        imshow("IMAGE_TEST", sourceImgs[i]);
+        waitKey(0);
     }
-    
-    
 }
 
-image_stiching::~image_stiching()
+StichImages::~StichImages()
 {
+    // release memory of sourceImgs vector
+    for (int i = 0; i < sourceImgs.size(); i++)
+        sourceImgs[i].release();
+    sourceImgs.clear();
+    sourceImgs.shrink_to_fit();
 }
