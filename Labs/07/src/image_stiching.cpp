@@ -1,10 +1,12 @@
 #include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/features2d.hpp>
+#include "opencv2/features2d.hpp"
+#include "opencv2/xfeatures2d.hpp"
 #include <iostream>
 #include <image_stiching.hpp>
+#include <panoramic_utils.hpp>
 
 using namespace cv;
+using namespace cv::xfeatures2d;
 using namespace std;
 
 StichImages::StichImages(string pathAndPattern)
@@ -22,14 +24,6 @@ StichImages::StichImages(string pathAndPattern)
         img = imread(filenames[i]);
         sourceImgs.push_back(img);
     }
-
-    namedWindow("IMAGE_TEST");
-
-    for (int i = 0; i < sourceImgs.size(); i++)
-    {
-        imshow("IMAGE_TEST", sourceImgs[i]);
-        waitKey(0);
-    }
 }
 
 StichImages::~StichImages()
@@ -39,4 +33,32 @@ StichImages::~StichImages()
         sourceImgs[i].release();
     sourceImgs.clear();
     sourceImgs.shrink_to_fit();
+}
+
+void StichImages::cylindricalConversion(double angle)
+{
+    for (int i = 0; i < sourceImgs.size(); i++)
+    {
+        //imshow("origin", sourceImgs[i]);
+        Mat img = cylindricalProj(sourceImgs[i], angle);
+        cylindricalImgs.push_back(img);
+        /*imshow("cil", img);
+        char c = (char)waitKey();
+        if (c == 'q')
+            break;*/
+        detectKeypoints(img, 400);
+    }
+}
+
+vector<KeyPoint> StichImages::detectKeypoints(Mat img, int hessianThreshold)
+{
+    Ptr<SURF> detector = SURF::create(hessianThreshold);
+    vector<KeyPoint> keyPoints;
+    detector->detect(img, keyPoints);
+    
+    // draw and show
+    Mat nImg;
+    drawKeypoints(img, keyPoints, nImg);
+    imshow("SURF KEYPOINTS", nImg);
+    waitKey(0);
 }
