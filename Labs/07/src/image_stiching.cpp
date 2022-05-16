@@ -35,30 +35,47 @@ StichImages::~StichImages()
     sourceImgs.shrink_to_fit();
 }
 
-void StichImages::cylindricalConversion(double angle)
+void StichImages::cylindricalConversion(double FOV)
 {
     for (int i = 0; i < sourceImgs.size(); i++)
     {
         //imshow("origin", sourceImgs[i]);
-        Mat img = cylindricalProj(sourceImgs[i], angle);
+        Mat img = cylindricalProj(sourceImgs[i], FOV/2.);
         cylindricalImgs.push_back(img);
         /*imshow("cil", img);
         char c = (char)waitKey();
         if (c == 'q')
             break;*/
-        detectKeypoints(img, 400);
+        detectKeypoints(img);
     }
 }
 
-vector<KeyPoint> StichImages::detectKeypoints(Mat img, int hessianThreshold)
+Mat StichImages::generateLandscape()
 {
-    Ptr<SURF> detector = SURF::create(hessianThreshold);
-    vector<KeyPoint> keyPoints;
-    detector->detect(img, keyPoints);
+
+}
+
+vector<KeyPoint> StichImages::detectKeypoints(Mat img)
+{
+    Ptr<SIFT> detector = SIFT::create();
+    vector<KeyPoint> keypoints;
+    detector->detect(img, keypoints);
     
-    // draw and show
+    /*// draw and show
     Mat nImg;
     drawKeypoints(img, keyPoints, nImg);
-    imshow("SURF KEYPOINTS", nImg);
-    waitKey(0);
+    imshow("SIFT KEYPOINTS", nImg);
+    waitKey(0);*/
+
+    return keypoints;
+}
+
+void StichImages::matchKeypoints(vector<KeyPoint> keypoints)
+{
+    for (int i = 0; i < cylindricalImgs.size()-1; i++)
+    {
+        BFMatcher bfMatch = BFMatcher();
+        matcher -> BFMatcher(); 
+    }
+    
 }

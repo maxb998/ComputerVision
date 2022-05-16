@@ -2,7 +2,7 @@
     "cmake.debugConfig": {
         "args": [
             "\"../../Datasets/dataset_dolomites/dolomites/*.png\"",
-            "27"
+            "54"
         ]
     },
     "files.associations": {
