@@ -1,0 +1,10 @@
+{
+    "cmake.debugConfig": {
+        "args": [
+            "\"../../docs/dataset/*.jpg\""
+        ]
+    },
+    "files.associations": {
+        "stdexcept": "cpp"
+    }
+}
