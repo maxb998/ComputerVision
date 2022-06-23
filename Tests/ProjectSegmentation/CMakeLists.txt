@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(bilateralTuning VERSION 0.1.0)
+project(projectSegmentation VERSION 0.1.0)
 
 include(CTest)
 enable_testing()
@@ -14,8 +14,15 @@ add_library(
 )
 target_include_directories(tasksLibrary PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/headers")
 
-add_executable(bilTune src/main.cpp)
-target_link_libraries(bilTune ${OpenCV_LIBS} tasksLibrary)
+add_library(
+    handSegHelper
+    headers/handSegmentationSupport.hpp
+    src/handSegmentationSupport.cpp
+)
+target_include_directories(handSegHelper PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/headers")
+
+add_executable(projSegm src/main.cpp)
+target_link_libraries(projSegm ${OpenCV_LIBS} tasksLibrary handSegHelper)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
