@@ -88,7 +88,6 @@ int handSegmentationSupport::loadHandBoxesCoordsWithGlob(char *pattern)
         handCount += handBoxes[i].size();
     
     handBoxesLoaded = true;
-    
 
     /*/ DEBUG print hand boxes coordinates
     for (int i = 0; i < handBoxes.size(); i++)
@@ -172,7 +171,7 @@ void handSegmentationSupport::showImgsWithTrueMasksSeg()
             i++;
         else if ((nxt == 'a') && (i > 0))
             i--;
-        else if (nxt == 'q')
+        else if ((nxt == 'q') || (nxt == 27))   // quit with 'q' or ESC key
             break;
 
         // draw objective segmentation
@@ -189,14 +188,7 @@ void handSegmentationSupport::showImgsWithTrueMasksSeg()
 
 Mat handSegmentationSupport::segmentImgWithTrueMask(int imgID)
 {
-    vector<Vec3b> colorTab;
-    for (int i = 0; i < handBoxes[imgID].size(); i++)
-    {
-        int b = theRNG().uniform(0, 255);
-        int g = theRNG().uniform(0, 255);
-        int r = theRNG().uniform(0, 255);
-        colorTab.push_back(Vec3b((uchar)b, (uchar)g, (uchar)r));
-    }
+    Vec3b color((uchar)theRNG().uniform(0,127), (uchar)theRNG().uniform(0,127), (uchar)theRNG().uniform(0,127));
 
     Mat segmented = imgs[imgID].clone();
     Mat cropImg, cropMask;
@@ -208,11 +200,64 @@ Mat handSegmentationSupport::segmentImgWithTrueMask(int imgID)
         for (int row = 0; row < cropMask.rows; row++)
             for (int col = 0; col < cropMask.cols; col++)
                 if (cropMask.at<uchar>(row,col) == 255)
-                    cropImg.at<Vec3b>(row,col) = cropImg.at<Vec3b>(row,col)/2 + colorTab[i]/2;
+                    cropImg.at<Vec3b>(row,col) = cropImg.at<Vec3b>(row,col)/2 + color;
     }
 
     return segmented;
 }
+
+void handSegmentationSupport::showImgsWithSpecifiedMasks(vector<Mat> mask)
+{
+    if (!imgsLoaded || !handBoxesLoaded)
+        throw invalid_argument("must load both images and hand coordinates");
+    if (mask.size() != imgs.size())
+        throw invalid_argument("invalid number of masks provided");
+    
+     Mat img;
+    char nxt = 't';
+    int i = 0;
+    
+    do
+    {
+        if ((nxt == 'd') && (i < imgs.size()-1))
+            i++;
+        else if ((nxt == 'a') && (i > 0))
+            i--;
+        else if ((nxt == 'q') || (nxt == 27))   // quit with 'q' or ESC key
+            break;
+
+        // draw objective segmentation
+        img = segmentImgWithTrueMask(i);
+
+        // draw box localization
+        for (int j = 0; j < handBoxes[i].size(); j++)
+            rectangle(img, handBoxes[i][j], Scalar(0,0,255), 2);
+
+        imshow("img", img);
+
+    } while (nxt = (char)waitKey(0));
+}
+
+Mat handSegmentationSupport::segmentImgWithSpecifiedMask(int imgID, Mat mask)
+{
+    Vec3b color((uchar)theRNG().uniform(0,127), (uchar)theRNG().uniform(0,127), (uchar)theRNG().uniform(0,127));
+
+    Mat segmented = imgs[imgID].clone();
+    Mat cropImg, cropMask;
+    for (int i = 0; i < handBoxes[imgID].size(); i++)
+    {
+        cropImg = segmented(handBoxes[imgID][i]);
+        cropMask = trueMasks[imgID](handBoxes[imgID][i]);
+
+        for (int row = 0; row < cropMask.rows; row++)
+            for (int col = 0; col < cropMask.cols; col++)
+                if (cropMask.at<uchar>(row,col) == 255)
+                    cropImg.at<Vec3b>(row,col) = cropImg.at<Vec3b>(row,col)/2 + color;
+    }
+
+    return segmented;
+}
+
 
 
 

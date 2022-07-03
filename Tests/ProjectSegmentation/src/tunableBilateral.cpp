@@ -16,7 +16,7 @@ tunableBilateral viewDemo(std::string filename)
     imshow("Original Image", s.original);
 
     namedWindow(s.windowName);
-    createTrackbar("n", s.windowName, &s.n, 10, applyFilterOnSliders, &s);
+    createTrackbar("n", s.windowName, &s.n, 30, applyFilterOnSliders, &s);
     createTrackbar("Kernel Size", s.windowName, &s.kSize, 20, applyFilterOnSliders, &s);
     createTrackbar("Sigma Color * 10", s.windowName, &s.intSC, 300, applyFilterOnSliders, &s);
     createTrackbar("Sigma Space * 10", s.windowName, &s.intSP, 300, applyFilterOnSliders, &s);

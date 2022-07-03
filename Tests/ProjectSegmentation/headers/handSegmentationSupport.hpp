@@ -20,6 +20,9 @@ public:
     void showImgsWithLocalizedHands();
     void showImgsWithTrueMasksSeg();
     cv::Mat segmentImgWithTrueMask(int imgID);
+
+    void showImgsWithSpecifiedMasks(std::vector<cv::Mat> masks);
+    cv::Mat segmentImgWithSpecifiedMask(int imgID, cv::Mat mask);
 };
 
 
